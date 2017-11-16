@@ -214,11 +214,10 @@ jQuery(document).ready(function(jQuery){
 });
 
 Vue.component('home', {
-    template:"#buystock_template",
+    template:"#home",
     data: function () {
 
         return {
-
             products        :{},
             provinces       :{},
             deliveryAddress :{},
