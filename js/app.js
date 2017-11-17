@@ -251,7 +251,8 @@ Vue.component('createaccount', {
             username:"",
             email:"",
             password:"",
-            confirm_password:""
+            confirm_password:"",
+            attemptSubmit: false,
 
         }
 
@@ -260,7 +261,7 @@ Vue.component('createaccount', {
     computed:{
 
         missingUsername:function(){ return this.username === '';},
-        missingEMail:function(){ return this.email === '';},
+        missingEmail:function(){ return this.email === '';},
         missingPassword:function(){ return this.password === '';},
         missingConfirmPassword:function(){ return this.confirm_password === '';},
 
@@ -269,32 +270,92 @@ Vue.component('createaccount', {
 
         validateCreateAccountForm: function (event) {
             this.attemptSubmit = true;
-            if (this.missingUsername || this.missingEMail || this.missingPassword || this.missingConfirmPassword ){
+            if (this.missingUsername || this.missingEmail || this.missingPassword || this.missingConfirmPassword ){
                 event.preventDefault()
             }else {
 
-                this.updateBusinessProfile();
+                this.createAccount();
             }
+        },
+
+        createAccount: function() {
+
+            var person           = {};
+            var address          = {};
+            var res_address      = {};
+            var del_address      = {};
+            var identification   = {};
+            var authentification = {};
+
+            /*------------Person ----------------*/
+            person.id         = this.person_id;
+            person.first_name = this.first_name;
+            person.last_name  = this.surname;
+
+            /*------------Residential Address ----------------*/
+
+
+            res_address.res_address_id = this.res_address_id;
+            res_address.res_street     = this.res_street;
+            res_address.res_suburb     = this.res_suburb;
+            res_address.res_area       = this.res_area;
+            res_address.res_city       = this.res_city;
+            res_address.res_code       = this.res_code;
+            res_address.res_province   = this.res_province;
+
+
+            /*------------ Delivery Address ----------------*/
+
+            del_address.del_address_id = this.del_address_id;
+            del_address.del_street     = this.del_street;
+            del_address.del_suburb     = this.del_suburb;
+            del_address.del_area       = this.del_area;
+            del_address.del_city       = this.del_city;
+            del_address.del_code       = this.del_code;
+            del_address.del_province   = this.del_province;
+
+
+            /*------------ Address ----------------*/
+
+            /*------------ Authentication ----------------*/
+            authentification.contact_id = this.contact_id;
+            authentification.password   = this.password;
+
+            address.residential    = res_address;
+            address.delivery       = del_address
+            this.formdata.person   = person;
+            this.formdata.address  = address;
+            this.formdata.authentication = authentification;
+
+            axios.post(BASEURL + 'api/v1/update/personal/distributor',this.formdata,getCustomHeaders)
+                .then(
+                    function(response){
+
+                        if(response.data.success){
+
+                            successAlert(response.data.message);
+
+                        }
+
+                    }
+                )
+                .catch(error =>{
+
+                console.log(error.response);
+        })
+
+
         },
 
     },
     beforeCreate(){
 
 
-        if (typeof distributor_id === "undefined") {
 
-            logout();
-        }
 
     },
     created(){
 
-
-        this.get_distributor_products();
-        this.get_provinces();
-        this.get_delivery_address();
-        this.getCards();
-        this.get_global_settings();
 
 
 
