@@ -1644,7 +1644,12 @@
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-label"><i class="fa fa-user"></i></span>
-                                        <input class="input-group-field" type="text" placeholder="Enter your username"   v-bind:class="{ 'errorFailed': attemptSubmit && missingUsername }" v-model="username" required>
+                                        <input class="input-group-field" type="text" placeholder="Enter your firstname"   v-bind:class="{ 'errorFailed': attemptSubmit && missingFirstname }" v-model="firstname" required>
+                                    </div>
+
+                                    <div class="input-group">
+                                        <span class="input-group-label"><i class="fa fa-user"></i></span>
+                                        <input class="input-group-field" type="text" placeholder="Enter your surname"   v-bind:class="{ 'errorFailed': attemptSubmit && missingSurname }" v-model="surname" required>
                                     </div>
 
                                     <div class="input-group">

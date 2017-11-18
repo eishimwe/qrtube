@@ -248,10 +248,12 @@ Vue.component('createaccount', {
 
         return {
 
-            username:"",
+            firstname:"",
+            surname:"",
             email:"",
             password:"",
             confirm_password:"",
+            formdata:{},
             attemptSubmit: false,
 
         }
@@ -260,7 +262,8 @@ Vue.component('createaccount', {
 
     computed:{
 
-        missingUsername:function(){ return this.username === '';},
+        missingFirstname:function(){ return this.firstname === '';},
+        missingSurname:function(){ return this.surname === '';},
         missingEmail:function(){ return this.email === '';},
         missingPassword:function(){ return this.password === '';},
         missingConfirmPassword:function(){ return this.confirm_password === '';},
@@ -270,7 +273,8 @@ Vue.component('createaccount', {
 
         validateCreateAccountForm: function (event) {
             this.attemptSubmit = true;
-            if (this.missingUsername || this.missingEmail || this.missingPassword || this.missingConfirmPassword ){
+            if (this.missingFirstname || this.missingEmail || this.missingPassword
+                || this.missingConfirmPassword || this.missingSurname ){
                 event.preventDefault()
             }else {
 
@@ -280,54 +284,19 @@ Vue.component('createaccount', {
 
         createAccount: function() {
 
-            var person           = {};
-            var address          = {};
-            var res_address      = {};
-            var del_address      = {};
-            var identification   = {};
-            var authentification = {};
+            var member           = {};
 
-            /*------------Person ----------------*/
-            person.id         = this.person_id;
-            person.first_name = this.first_name;
-            person.last_name  = this.surname;
+            /*------------Member ----------------*/
+            member.members_email         = this.email;
+            member.members_firstname     = this.firstname;
+            member.members_surname       = this.surname;
+            member.members_password      = this.password;
+            member.members_deleted       = 1;
 
-            /*------------Residential Address ----------------*/
+            this.formdata    = member;
 
 
-            res_address.res_address_id = this.res_address_id;
-            res_address.res_street     = this.res_street;
-            res_address.res_suburb     = this.res_suburb;
-            res_address.res_area       = this.res_area;
-            res_address.res_city       = this.res_city;
-            res_address.res_code       = this.res_code;
-            res_address.res_province   = this.res_province;
-
-
-            /*------------ Delivery Address ----------------*/
-
-            del_address.del_address_id = this.del_address_id;
-            del_address.del_street     = this.del_street;
-            del_address.del_suburb     = this.del_suburb;
-            del_address.del_area       = this.del_area;
-            del_address.del_city       = this.del_city;
-            del_address.del_code       = this.del_code;
-            del_address.del_province   = this.del_province;
-
-
-            /*------------ Address ----------------*/
-
-            /*------------ Authentication ----------------*/
-            authentification.contact_id = this.contact_id;
-            authentification.password   = this.password;
-
-            address.residential    = res_address;
-            address.delivery       = del_address
-            this.formdata.person   = person;
-            this.formdata.address  = address;
-            this.formdata.authentication = authentification;
-
-            axios.post(BASEURL + 'api/v1/update/personal/distributor',this.formdata,getCustomHeaders)
+            axios.post('http://ec2-52-200-186-135.compute-1.amazonaws.com/api_twominutes/index.php/api/register',this.formdata)
                 .then(
                     function(response){
 
@@ -342,7 +311,8 @@ Vue.component('createaccount', {
                 .catch(error =>{
 
                 console.log(error.response);
-        })
+            })
+
 
 
         },
