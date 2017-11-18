@@ -216,15 +216,56 @@ jQuery(document).ready(function(jQuery){
 Vue.component('home', {
     template:"#home",
     data: function () {
-
         return {
-
-
 
         }
 
     },
+    computed:{
+
+        missingEmail:function(){ return this.email === '';},
+        missingPassword:function(){ return this.password === '';},
+
+    },
     methods:{
+
+        validateLoginForm:function(){
+
+            if (this.missingEmail || this.missingPassword){
+                event.preventDefault()
+            }else {
+
+                this.login();
+            }
+
+        },
+
+        login:function(){
+
+            var loginData          = {};
+            loginData.email        = this.email;
+            loginData.password     = this.firstname;
+            this.formdata          = loginData;
+
+            axios.post('http://ec2-52-200-186-135.compute-1.amazonaws.com/api_twominutes/index.php/api/login',this.formdata)
+                .then(
+                    function(response){
+
+                        if(response.data.success){
+
+                            successAlert(response.data.message);
+
+                        }
+
+                    }
+                )
+                .catch(error =>{
+
+                console.log(error.response);
+        })
+
+
+        }
 
     },
     beforeCreate(){
@@ -435,6 +476,61 @@ const router = new VueRouter({
 })
 
 var app = new Vue({
+    data: function () {
+        return {
+            email:"",
+            password:"",
+            formdata:{},
+            attemptSubmit: false
+        }
+
+    },
+    computed:{
+
+        missingEmail:function(){ return this.email === '';},
+        missingPassword:function(){ return this.password === '';},
+
+    },
+    methods:{
+
+        validateLoginForm:function(){
+
+            if (this.missingEmail || this.missingPassword){
+                event.preventDefault()
+            }else {
+
+                this.login();
+            }
+
+        },
+
+        login:function(){
+
+            var loginData          = {};
+            loginData.email        = this.email;
+            loginData.password     = this.password;
+            this.formdata          = loginData;
+            axios.post('http://ec2-52-200-186-135.compute-1.amazonaws.com/api_twominutes/index.php/api/login',this.formdata)
+                .then(
+                    function(response){
+
+                        if(response.data.success){
+
+                            successAlert(response.data.message);
+
+                        }
+
+                    }
+                )
+                .catch(error =>{
+
+                console.log(error.response);
+        })
+
+
+        }
+
+    },
 
     el:'#app',
     router,
