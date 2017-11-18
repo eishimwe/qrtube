@@ -329,14 +329,103 @@ Vue.component('createaccount', {
 
 })
 
+Vue.component('uploadvideo', {
+    template:"#uploadvideo",
+    data: function () {
 
-const home             = { template: '<home></home>' }
+        return {
+
+            firstname:"",
+            surname:"",
+            email:"",
+            password:"",
+            confirm_password:"",
+            formdata:{},
+            attemptSubmit: false,
+
+        }
+
+    },
+
+    computed:{
+
+        missingFirstname:function(){ return this.firstname === '';},
+        missingSurname:function(){ return this.surname === '';},
+        missingEmail:function(){ return this.email === '';},
+        missingPassword:function(){ return this.password === '';},
+        missingConfirmPassword:function(){ return this.confirm_password === '';},
+
+    },
+    methods:{
+
+        validateCreateAccountForm: function (event) {
+            this.attemptSubmit = true;
+            if (this.missingFirstname || this.missingEmail || this.missingPassword
+                || this.missingConfirmPassword || this.missingSurname ){
+                event.preventDefault()
+            }else {
+
+                this.createAccount();
+            }
+        },
+
+        createAccount: function() {
+
+            var member           = {};
+
+            /*------------Member ----------------*/
+            member.members_email         = this.email;
+            member.members_firstname     = this.firstname;
+            member.members_surname       = this.surname;
+            member.members_password      = this.password;
+            member.members_deleted       = 1;
+            this.formdata                = member;
+
+            axios.post('http://ec2-52-200-186-135.compute-1.amazonaws.com/api_twominutes/index.php/api/register',this.formdata)
+                .then(
+                    function(response){
+
+                        if(response.data.success){
+
+                            successAlert(response.data.message);
+
+                        }
+
+                    }
+                )
+                .catch(error =>{
+
+                console.log(error.response);
+        })
+
+        },
+
+    },
+    beforeCreate(){
+
+
+
+
+    },
+    created(){
+
+
+
+
+    }
+
+})
+
+
+const home            = { template: '<home></home>' }
 const createaccount   = { template: '<createaccount></createaccount>' }
+const uploadvideo     = { template: '<uploadvideo></uploadvideo>' }
 
 const routes = [
 
     { path: '/', component: home},
     { path: '/createaccount', component: createaccount},
+    { path: '/uploadvideo', component: uploadvideo},
 
 ]
 
