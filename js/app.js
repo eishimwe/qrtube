@@ -292,9 +292,7 @@ Vue.component('createaccount', {
             member.members_surname       = this.surname;
             member.members_password      = this.password;
             member.members_deleted       = 1;
-
-            this.formdata    = member;
-
+            this.formdata                = member;
 
             axios.post('http://ec2-52-200-186-135.compute-1.amazonaws.com/api_twominutes/index.php/api/register',this.formdata)
                 .then(
@@ -312,8 +310,6 @@ Vue.component('createaccount', {
 
                 console.log(error.response);
             })
-
-
 
         },
 

@@ -1644,26 +1644,26 @@
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-label"><i class="fa fa-user"></i></span>
-                                        <input class="input-group-field" type="text" placeholder="Enter your firstname"   v-bind:class="{ 'errorFailed': attemptSubmit && missingFirstname }" v-model="firstname" required>
+                                        <input class="input-group-field" type="text" placeholder="Enter your firstname"   v-bind:class="{ 'is-invalid-input': attemptSubmit && missingFirstname }" v-model="firstname" required>
                                     </div>
 
                                     <div class="input-group">
                                         <span class="input-group-label"><i class="fa fa-user"></i></span>
-                                        <input class="input-group-field" type="text" placeholder="Enter your surname"   v-bind:class="{ 'errorFailed': attemptSubmit && missingSurname }" v-model="surname" required>
+                                        <input class="input-group-field" type="text" placeholder="Enter your surname"   v-bind:class="{ 'is-invalid-input': attemptSubmit && missingSurname }" v-model="surname" required>
                                     </div>
 
                                     <div class="input-group">
                                         <span class="input-group-label"><i class="fa fa-envelope"></i></span>
-                                        <input class="input-group-field" type="email" placeholder="Enter your email" v-bind:class="{ 'errorFailed': attemptSubmit && missingEmail }" v-model="email" required>
+                                        <input class="input-group-field" type="email" placeholder="Enter your email" v-bind:class="{ 'is-invalid-input': attemptSubmit && missingEmail }" v-model="email" required>
                                     </div>
 
                                     <div class="input-group">
                                         <span class="input-group-label"><i class="fa fa-lock"></i></span>
-                                        <input type="password" id="password" placeholder="Enter your password"  v-model="password" v-bind:class="{ 'errorFailed': attemptSubmit && missingPassword }" required>
+                                        <input type="password" id="password" placeholder="Enter your password"  v-model="password" v-bind:class="{ 'is-invalid-input': attemptSubmit && missingPassword }" required>
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-label"><i class="fa fa-lock"></i></span>
-                                        <input type="password" placeholder="Re-type your password" required pattern="alpha_numeric"  v-bind:class="{ 'errorFailed': attemptSubmit && missingConfirmPassword }" v-model="confirm_password" data-equalto="password">
+                                        <input type="password" placeholder="Re-type your password" required pattern="alpha_numeric"  v-bind:class="{ 'is-invalid-input': attemptSubmit && missingConfirmPassword }" v-model="confirm_password" data-equalto="password">
                                     </div>
                                     <span class="form-error">your email is invalid</span>
                                     <button class="button expanded" type="submit" name="submit">register Now</button>
