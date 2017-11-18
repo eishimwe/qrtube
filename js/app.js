@@ -269,15 +269,8 @@ Vue.component('home', {
 
     },
     beforeCreate(){
-
-
-
     },
     created(){
-
-
-
-
 
     }
 
