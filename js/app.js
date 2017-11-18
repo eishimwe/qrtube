@@ -507,9 +507,11 @@ var app = new Vue({
                 .then(
                     function(response){
 
+                        console.log(response);
+
                         if(response.data.success){
 
-                            successAlert(response.data.message);
+
 
                         }
 
@@ -517,7 +519,7 @@ var app = new Vue({
                 )
                 .catch(error =>{
 
-                console.log(error.response);
+                 console.log(error);
         })
 
 
