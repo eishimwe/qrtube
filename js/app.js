@@ -213,6 +213,8 @@ jQuery(document).ready(function(jQuery){
 
 });
 
+var member_id     = Cookies.get('member_id');
+
 Vue.component('home', {
     template:"#home",
     data: function () {
@@ -482,6 +484,14 @@ var app = new Vue({
 
         missingEmail:function(){ return this.email === '';},
         missingPassword:function(){ return this.password === '';},
+
+    },
+    beforeCreate(){
+
+        if (typeof member_id === "undefined") {
+
+            //logout();
+        }
 
     },
     methods:{
