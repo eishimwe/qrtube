@@ -512,18 +512,21 @@ var app = new Vue({
         login:function(){
 
             var loginData          = {};
-            loginData.email        = this.email;
-            loginData.password     = this.password;
-            this.formdata          = loginData;
+            var vm  = this;
+            loginData.email        = vm.email;
+            loginData.password     = vm.password;
+            vm.formdata          = loginData;
             axios.post('http://ec2-52-200-186-135.compute-1.amazonaws.com/api_twominutes/index.php/api/login',this.formdata)
                 .then(
                     function(response){
 
                         if(response.data.success){
 
+                            console.log('Elie Ishimwe');
+
                             Cookies.set("member_id",response.data.member.members_id);
-                            this.login_btn = true;
-                            this.upload_btn = true;
+                            vm.login_btn = true;
+                            vm.upload_btn = true;
                         }
 
                     }
