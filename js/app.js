@@ -476,7 +476,9 @@ var app = new Vue({
             email:"",
             password:"",
             formdata:{},
-            attemptSubmit: false
+            attemptSubmit: false,
+            login_btn:false,
+            upload_btn:false
         }
 
     },
@@ -520,6 +522,8 @@ var app = new Vue({
                         if(response.data.success){
 
                             Cookies.set("member_id",response.data.member.members_id);
+                            this.login_btn = true;
+                            this.upload_btn = true;
                         }
 
                     }
