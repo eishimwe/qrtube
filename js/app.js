@@ -1,3 +1,4 @@
+
 jQuery.noConflict();
 jQuery(document).foundation();
 jQuery(document).ready(function(jQuery){
@@ -490,9 +491,15 @@ var app = new Vue({
     },
     beforeCreate(){
 
+        var vm = this;
+
         if (typeof member_id === "undefined") {
 
-            //logout();
+            logout();
+        } else{
+
+            vm.login_btn = true;
+
         }
 
     },
@@ -522,10 +529,11 @@ var app = new Vue({
 
                         if(response.data.success){
 
-                            console.log('Elie Ishimwe');
 
                             Cookies.set("member_id",response.data.member.members_id);
-                            vm.login_btn = true;
+
+                            member_id = response.data.member.members_id;
+                            vm.login_btn  = true;
                             vm.upload_btn = true;
                         }
 
@@ -545,3 +553,4 @@ var app = new Vue({
     router,
 
 })
+
