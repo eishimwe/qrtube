@@ -376,6 +376,8 @@ Vue.component('uploadvideo', {
             surname:"",
             email:"",
             password:"",
+            title:"",
+            description:"",
             confirm_password:"",
             formdata:{},
             attemptSubmit: false,
@@ -404,6 +406,41 @@ Vue.component('uploadvideo', {
 
                 this.createAccount();
             }
+        },
+        uploadVideo:function(e){
+
+            e.preventDefault();
+            const files = this.$refs.image.files;
+            const data  = new FormData();
+
+            if(this.commission_month != "" && this.commission_year != ""){
+
+                data.append('month',this.commission_month);
+                data.append('year',this.commission_year);
+            }
+
+            data.append('commissionFile', files[0]);
+            const vm = this;
+            axios.post(NYTBaseUrl + 'uploadCommissions',data,getHeaders)
+                .then(
+                    function(response){
+
+                        if(response.data.success){
+
+
+                            vm.getCommissionData(vm.commission_id)
+
+
+                        }
+
+                    }
+                )
+                .catch(error =>{
+
+                console.log(error.response);
+        });
+
+
         },
 
         createAccount: function() {
@@ -516,6 +553,7 @@ var app = new Vue({
 
         },
 
+
         login:function(){
 
             var loginData          = {};
@@ -546,6 +584,7 @@ var app = new Vue({
 
 
         }
+
 
     },
 
