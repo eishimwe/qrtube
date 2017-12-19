@@ -390,6 +390,7 @@ Vue.component('uploadvideo', {
     computed:{
 
         missingTitle:function(){ return this.title === '';},
+        missingDescription:function(){ return this.description === '';},
 
 
     },
@@ -397,7 +398,7 @@ Vue.component('uploadvideo', {
 
         validateUploadForm: function (event) {
             this.attemptSubmit = true;
-            if (this.missingTitle ){
+            if (this.missingTitle || this.missingDescription ){
                 event.preventDefault()
             }else {
 
