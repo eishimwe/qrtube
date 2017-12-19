@@ -1770,13 +1770,13 @@
                                                 <input type="text" placeholder="enter video tags.." required>
                                             </label>
                                         </div>
+
                                         <div class="large-12 columns">
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-warning" role="progressbar" v-bind:aria-valuenow="percentage"
-                                                     aria-valuemin="0" aria-valuemax="100" v-bind:style="{ 'width' :percentage }" >
-                                                    {{ percentage }} % Complete (warning)
-                                                </div>
+
+                                            <div id="myProgress">
+                                                <div id="myBar"> {{ percentage }} %</div>
                                             </div>
+
                                         </div>
 
                                         <div class="large-12 columns">

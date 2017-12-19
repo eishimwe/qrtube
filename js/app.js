@@ -428,15 +428,12 @@ Vue.component('uploadvideo', {
                 }
             };
 
-
             axios.post('http://ec2-52-200-186-135.compute-1.amazonaws.com/api_twominutes/index.php/api/upload_video/',data,config)
                 .then(
                     function(response){
 
                         if(response.data.success){
 
-
-                            //vm.getCommissionData(vm.commission_id)
 
 
                         }
