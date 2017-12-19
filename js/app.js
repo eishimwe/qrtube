@@ -389,23 +389,19 @@ Vue.component('uploadvideo', {
 
     computed:{
 
-        missingFirstname:function(){ return this.firstname === '';},
-        missingSurname:function(){ return this.surname === '';},
-        missingEmail:function(){ return this.email === '';},
-        missingPassword:function(){ return this.password === '';},
-        missingConfirmPassword:function(){ return this.confirm_password === '';},
+        missingTitle:function(){ return this.title === '';},
+
 
     },
     methods:{
 
-        validateCreateAccountForm: function (event) {
+        validateUploadForm: function (event) {
             this.attemptSubmit = true;
-            if (this.missingFirstname || this.missingEmail || this.missingPassword
-                || this.missingConfirmPassword || this.missingSurname ){
+            if (this.missingTitle ){
                 event.preventDefault()
             }else {
 
-                this.createAccount();
+                this.uploadVideo();
             }
         },
         uploadVideo:function(e){
