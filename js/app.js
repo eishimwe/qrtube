@@ -600,7 +600,7 @@ var app = new Vue({
 
                             Cookies.set("member_id",response.data.member.members_id);
                             member_id = response.data.member.members_id;
-                            vm.login_btn  = true;
+                            vm.logout_btn  = true;
                             vm.upload_btn = true;
                             vm.type = 'none';
                             //$(".login-form").css("display", "none");
