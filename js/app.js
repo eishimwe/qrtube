@@ -419,9 +419,15 @@ Vue.component('uploadvideo', {
             data.append('member_id', Cookies.get('member_id'));
             data.append('video', files[0]);
 
+            var config = {
+                onUploadProgress: function(progressEvent) {
+                    var percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+                    console.log("Progress:-"+percentCompleted);
+                }
+            };
 
             const vm = this;
-            axios.post('http://ec2-52-200-186-135.compute-1.amazonaws.com/api_twominutes/index.php/api/upload_video/',data)
+            axios.post('http://ec2-52-200-186-135.compute-1.amazonaws.com/api_twominutes/index.php/api/upload_video/',data,config)
                 .then(
                     function(response){
 
