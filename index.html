@@ -1743,7 +1743,7 @@
                                         </div>
                                         <div class="large-12 columns">
                                             <label>Description
-                                                <textarea v-model="description"  placeholder="enter video description..." ></textarea>
+                                                <textarea v-model="description" v-bind:class="{ 'is-invalid-input': attemptSubmit && missingDescription }" placeholder="enter video description..." ></textarea>
                                             </label>
                                         </div>
 
