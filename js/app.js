@@ -535,7 +535,11 @@ var app = new Vue({
 
         if (typeof member_id === "undefined") {
 
-            //logout();
+            if(window.location.href.indexOf('uploadvideo') != -1){
+
+                document.location.href="/";
+            }
+
 
         } else{
 
@@ -551,7 +555,13 @@ var app = new Vue({
 
         if (typeof member_id === "undefined") {
 
-            //logout();
+
+            if(window.location.href.indexOf('uploadvideo') != -1){
+
+                document.location.href="/";
+            }
+
+
         } else{
 
             vm.logout_btn   = true;
