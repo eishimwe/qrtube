@@ -413,22 +413,22 @@ Vue.component('uploadvideo', {
             const files = this.$refs.image.files;
             const data  = new FormData();
 
-            if(this.commission_month != "" && this.commission_year != ""){
+            console.log(files);
 
-                data.append('month',this.commission_month);
-                data.append('year',this.commission_year);
-            }
+            data.append('video_title',this.title);
+            data.append('member_id', Cookies.get('member_id'));
+            data.append('video', files[0]);
 
-            data.append('commissionFile', files[0]);
+
             const vm = this;
-            axios.post(NYTBaseUrl + 'uploadCommissions',data,getHeaders)
+            axios.post('http://ec2-52-200-186-135.compute-1.amazonaws.com/api_twominutes/index.php/api/upload_video/',data)
                 .then(
                     function(response){
 
                         if(response.data.success){
 
 
-                            vm.getCommissionData(vm.commission_id)
+                            //vm.getCommissionData(vm.commission_id)
 
 
                         }
