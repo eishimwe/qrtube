@@ -4190,10 +4190,10 @@ table.hover tr:nth-of-type(even):hover {
   animation-delay: 700ms !important; }
 #myProgress {
   width: 100%;
-  background-color: red;
+  background-color: grey;
 }
 #myBar {
-  width: 10%;
+  width: 0%;
   height: 30px;
   background-color: #4CAF50;
   text-align: center; /* To center it horizontally (if you want) */
