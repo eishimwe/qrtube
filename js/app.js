@@ -531,8 +531,6 @@ var app = new Vue({
 
         var vm = this;
 
-        alert(member_id);
-
         if (typeof member_id === "undefined") {
 
             if(window.location.href.indexOf('uploadvideo') != -1){
