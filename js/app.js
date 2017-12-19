@@ -580,6 +580,7 @@ var app = new Vue({
             Cookies.remove('member_id');
             vm.logout_btn  = false;
             vm.upload_btn = false;
+            document.location.href="/";
 
 
         },
