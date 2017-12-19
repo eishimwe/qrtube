@@ -578,7 +578,7 @@ var app = new Vue({
 
             var vm  = this;
             Cookies.remove('member_id');
-            vm.login_btn  = false;
+            vm.logout_btn  = false;
             vm.upload_btn = false;
 
 
