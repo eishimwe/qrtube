@@ -1850,7 +1850,7 @@
 
                                     </li>
                                     <li>
-                                        <a href="javascript:logout();"  v-if="logout_btn">logout</a>
+                                        <a  @click="logout" v-if="logout_btn">logout</a>
                                     </li>
                                     <li class="dropdown-login" v-if="!logout_btn">
                                         <a class="loginReg" data-toggle="example-dropdown" href="#">login/Register</a>
@@ -2073,11 +2073,11 @@
 <!-- script files -->
 <script>
 
-    function logout(){
+  /*  function logout(){
 
         Cookies.remove('member_id');
 
-    }
+    }*/
 
 </script>
 <!-- VueJs -->

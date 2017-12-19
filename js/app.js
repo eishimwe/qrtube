@@ -534,7 +534,7 @@ var app = new Vue({
 
         if (typeof member_id === "undefined") {
 
-            logout();
+            //logout();
 
         } else{
 
@@ -550,7 +550,7 @@ var app = new Vue({
 
         if (typeof member_id === "undefined") {
 
-            logout();
+            //logout();
         } else{
 
             vm.logout_btn   = true;
@@ -573,6 +573,15 @@ var app = new Vue({
 
         },
 
+        logout:function(){
+
+            var vm  = this;
+            Cookies.remove('member_id');
+            vm.login_btn  = false;
+            vm.upload_btn = false;
+
+
+        },
 
         login:function(){
 
@@ -580,7 +589,7 @@ var app = new Vue({
             var vm  = this;
             loginData.email        = vm.email;
             loginData.password     = vm.password;
-            vm.formdata          = loginData;
+            vm.formdata            = loginData;
             axios.post('http://ec2-52-200-186-135.compute-1.amazonaws.com/api_twominutes/index.php/api/login',this.formdata)
                 .then(
                     function(response){
@@ -589,10 +598,12 @@ var app = new Vue({
 
 
                             Cookies.set("member_id",response.data.member.members_id);
-
                             member_id = response.data.member.members_id;
                             vm.login_btn  = true;
                             vm.upload_btn = true;
+                            //$(".login-form").css("display", "none");
+
+
                         }
 
                     }
