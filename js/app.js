@@ -515,7 +515,7 @@ var app = new Vue({
             password:"",
             formdata:{},
             attemptSubmit: false,
-            login_btn:false,
+            logout_btn:false,
             upload_btn:false
         }
 
@@ -530,14 +530,35 @@ var app = new Vue({
 
         var vm = this;
 
+        alert(member_id);
+
+        if (typeof member_id === "undefined") {
+
+
+
+            logout();
+        } else{
+
+            vm.logout_btn   = true;
+            vm.upload_btn   = true;
+
+        }
+
+    },
+    created(){
+
+        var vm = this;
+
         if (typeof member_id === "undefined") {
 
             logout();
         } else{
 
-            vm.login_btn = true;
+            vm.logout_btn   = true;
+            vm.upload_btn   = true;
 
         }
+
 
     },
     methods:{
