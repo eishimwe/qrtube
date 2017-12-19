@@ -382,6 +382,7 @@ Vue.component('uploadvideo', {
             formdata:{},
             attemptSubmit: false,
             percentage:0,
+            validated:0,
 
         }
 
@@ -402,7 +403,7 @@ Vue.component('uploadvideo', {
                 event.preventDefault()
             }else {
 
-                this.uploadVideo();
+                this.uploadVideo(event);
             }
         },
         uploadVideo:function(e){
@@ -410,9 +411,8 @@ Vue.component('uploadvideo', {
             e.preventDefault();
             const files = this.$refs.image.files;
             const data  = new FormData();
-
             const vm = this;
-
+            vm.validated = 1;
             data.append('video_title',this.title);
             data.append('member_id', Cookies.get('member_id'));
             data.append('video', files[0]);
