@@ -381,6 +381,7 @@ Vue.component('uploadvideo', {
             confirm_password:"",
             formdata:{},
             attemptSubmit: false,
+            percentage:30,
 
         }
 

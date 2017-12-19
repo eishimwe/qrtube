@@ -1771,8 +1771,12 @@
                                             </label>
                                         </div>
                                         <div class="large-12 columns">
-                                            <div id="progress-div"><div id="progress-bar"></div></div>
-                                            <div id="targetLayer"></div>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" v-bind:aria-valuenow="percentage"
+                                                     aria-valuemin="0" aria-valuemax="100" v-bind:style="{ 'width' :percentage }" >
+                                                    {{ percentage }} % Complete (warning)
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="large-12 columns">
