@@ -534,9 +534,8 @@ var app = new Vue({
 
         if (typeof member_id === "undefined") {
 
-
-
             logout();
+
         } else{
 
             vm.logout_btn   = true;
