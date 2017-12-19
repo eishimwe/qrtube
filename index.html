@@ -1854,7 +1854,7 @@
                                     </li>
                                     <li class="dropdown-login" v-if="!logout_btn">
                                         <a class="loginReg" data-toggle="example-dropdown" href="#">login/Register</a>
-                                        <div class="login-form">
+                                        <div class="login-form"  v-bind:style="{ 'display': type }">
                                             <h6 class="text-center">Great to have you back!</h6>
                                             <form v-on:submit="validateLoginForm">
                                                 <div class="input-group">

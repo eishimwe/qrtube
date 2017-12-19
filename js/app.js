@@ -516,7 +516,8 @@ var app = new Vue({
             formdata:{},
             attemptSubmit: false,
             logout_btn:false,
-            upload_btn:false
+            upload_btn:false,
+            type:'',
         }
 
     },
@@ -601,6 +602,7 @@ var app = new Vue({
                             member_id = response.data.member.members_id;
                             vm.login_btn  = true;
                             vm.upload_btn = true;
+                            vm.type = 'none';
                             //$(".login-form").css("display", "none");
 
 
